@@ -16,7 +16,7 @@
 
 package com.edevapps.confluence.util.velocity;
 
-import static com.edevapps.util.AssertUtil.assertNotNull;
+import static com.edevapps.util.ObjectsUtil.requireNonNull;
 
 public class SimpleContextParameterImpl<T> implements SimpleContextParameter<T> {
 	
@@ -24,7 +24,7 @@ public class SimpleContextParameterImpl<T> implements SimpleContextParameter<T> 
 	private T value;
 	
 	public SimpleContextParameterImpl(String key, T value) {
-		this.key = assertNotNull(key, "key");
+		this.key = requireNonNull(key, "key");
 		this.value = value;
 	}
 	

@@ -16,8 +16,8 @@
 
 package com.edevapps.confluence.util.velocity;
 
-import static com.edevapps.util.AssertUtil.assertNotNull;
-import static com.edevapps.util.AssertUtil.assertNotNullOrEmpty;
+import static com.edevapps.util.ObjectsUtil.requireNonNull;
+import static com.edevapps.util.ObjectsUtil.requireNonNullOrEmpty;
 
 import com.edevapps.confluence.util.ComponentsUtil;
 
@@ -26,11 +26,11 @@ public class RequestContextParameterImpl implements RequestContextParameter {
 	private final String baseUrl;
 	
 	public RequestContextParameterImpl(String baseUrl) {
-		this.baseUrl = assertNotNullOrEmpty(baseUrl, "baseUrl");
+		this.baseUrl = requireNonNullOrEmpty(baseUrl, "baseUrl");
 	}
 	
 	public RequestContextParameterImpl() {
-		this.baseUrl = assertNotNull(ComponentsUtil.getSettingsManager().getGlobalSettings(),
+		this.baseUrl = requireNonNull(ComponentsUtil.getSettingsManager().getGlobalSettings(),
 				"ComponentsUtil.getSettingsManager().getGlobalSettings()").getBaseUrl();
 	}
 	

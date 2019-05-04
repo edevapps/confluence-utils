@@ -6,7 +6,7 @@
 
   <groupId>com.edevapps.confluence</groupId>
   <artifactId>confluence-utils</artifactId>
-  <version>0.9.4</version>
+  <version>0.9.6</version>
 
   <properties>
     <confluence.version>6.8.0</confluence.version>
@@ -15,7 +15,7 @@
     <log4j.version>1.2.17</log4j.version>
     <jira.version>7.7.1</jira.version>
     <amps.version>6.3.15</amps.version>
-    <common-utils.version>0.9.2</common-utils.version>
+    <common-utils.version>1.0.2</common-utils.version>
   </properties>
 
   <dependencies>

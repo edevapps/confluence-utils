@@ -16,7 +16,7 @@
 
 package com.edevapps.confluence.util.velocity;
 
-import static com.edevapps.util.AssertUtil.assertNotNull;
+import static com.edevapps.util.ObjectsUtil.requireNonNull;
 
 import com.atlassian.confluence.plugin.webresource.ConfluenceWebResourceManager;
 import com.edevapps.Builder;
@@ -62,7 +62,7 @@ public abstract class AbstractContextBuilder<T extends AbstractContextBuilder> i
 	
 	public static <T2 extends AbstractContextBuilder> T2 builder(Class<Factory<T2>> factory) {
 		try {
-			return assertNotNull(factory, "factory").newInstance().create();
+			return requireNonNull(factory, "factory").newInstance().create();
 		} catch (InstantiationException e) {
 			throw new IllegalStateException(e);
 		} catch (IllegalAccessException e) {
@@ -84,7 +84,6 @@ public abstract class AbstractContextBuilder<T extends AbstractContextBuilder> i
 	}
 	
 	public Map<?, ?> build() {
-		validate();
 		Map context = createMap();
 		
 		if(this.webResourceManager != null) {

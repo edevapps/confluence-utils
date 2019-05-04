@@ -16,7 +16,7 @@
 
 package com.edevapps.confluence.util.velocity;
 
-import static com.edevapps.util.AssertUtil.assertNotNull;
+import static com.edevapps.util.ObjectsUtil.requireNonNull;
 
 import com.edevapps.Builder;
 
@@ -34,19 +34,14 @@ public class SimpleContextParameterBuilder<T> implements Builder<SimpleContextPa
 		this.value = value;
 		return this;
 	}
-	
-	@Override
-	public void validate() throws IllegalStateException {
-		assertNotNull(this.key, "key");
-	}
-	
+
 	private static class SimpleContextParameterImpl<T> implements SimpleContextParameter<T> {
 		
 		private final String key;
 		private T value;
 		
 		public SimpleContextParameterImpl(String key, T value) {
-			this.key = assertNotNull(key, "key");
+			this.key = requireNonNull(key, "key");
 			this.value = value;
 		}
 		
@@ -63,7 +58,6 @@ public class SimpleContextParameterBuilder<T> implements Builder<SimpleContextPa
 	
 	@Override
 	public SimpleContextParameter<T> build() {
-		validate();
 		return new SimpleContextParameterImpl<>(this.key, this.value);
 	}
 }
