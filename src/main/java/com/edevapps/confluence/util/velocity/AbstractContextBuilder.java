@@ -21,7 +21,8 @@ import static com.edevapps.util.ObjectsUtil.requireNonNull;
 import com.atlassian.confluence.plugin.webresource.ConfluenceWebResourceManager;
 import com.edevapps.Builder;
 import com.edevapps.Factory;
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +32,7 @@ public abstract class AbstractContextBuilder<T extends AbstractContextBuilder> i
 	
 	protected static final String WEB_RESOURCE_MANAGER_PAR = "webResourceManager";
 	
-	private final List<ContextParameter> parameters = Lists.newArrayList();
+	private final List<ContextParameter> parameters = Collections.synchronizedList(new ArrayList<>());
 	private ConfluenceWebResourceManager webResourceManager;
 	
 	protected AbstractContextBuilder() { }
@@ -56,16 +57,27 @@ public abstract class AbstractContextBuilder<T extends AbstractContextBuilder> i
 	
 	@SuppressWarnings("unchecked")
 	public T addParameter(ContextParameter parameter) {
-		this.parameters.add(parameter);
+		this.parameters.add(requireNonNull(parameter, "parameter"));
+		return (T)this;
+	}
+
+	@SuppressWarnings("unchecked")
+	public T setParameter(ContextParameter parameter) {
+		requireNonNull(parameter, "parameter");
+		for(ContextParameter contextParameter: this.parameters.toArray(new ContextParameter[0])) {
+			if(contextParameter.getKey().equals(parameter.getKey())) {
+				this.parameters.remove(contextParameter);
+				this.parameters.add(parameter);
+				break;
+			}
+		}
 		return (T)this;
 	}
 	
 	public static <T2 extends AbstractContextBuilder> T2 builder(Class<Factory<T2>> factory) {
 		try {
 			return requireNonNull(factory, "factory").newInstance().create();
-		} catch (InstantiationException e) {
-			throw new IllegalStateException(e);
-		} catch (IllegalAccessException e) {
+		} catch (InstantiationException | IllegalAccessException e) {
 			throw new IllegalStateException(e);
 		}
 	}
@@ -76,6 +88,7 @@ public abstract class AbstractContextBuilder<T extends AbstractContextBuilder> i
 	
 	protected void onBuild(Map<?, ?> context) { }
 	
+	@SuppressWarnings("rawtypes")
 	protected Object getParameterValue(ContextParameter parameter) {
 		if(parameter instanceof SimpleContextParameter) {
 			return ((SimpleContextParameter)parameter).getValue();

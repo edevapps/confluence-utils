@@ -21,6 +21,7 @@ import com.atlassian.confluence.core.ContentPermissionManager;
 import com.atlassian.confluence.languages.LocaleManager;
 import com.atlassian.confluence.pages.PageManager;
 import com.atlassian.confluence.setup.settings.SettingsManager;
+import com.atlassian.confluence.user.UserAccessor;
 import com.atlassian.spring.container.ContainerManager;
 
 public class ComponentsUtil {
@@ -29,6 +30,7 @@ public class ComponentsUtil {
   private static final String PAGE_MANAGER_COMP = "pageManager";
   private static final String SETTINGS_MANAGER = "settingsManager";
   private static final String LOCALE_MANAGER = "localeManager";
+  private static final String USER_ASSESOR = "userAccessor";
   
   public static ContentPermissionManager getContentPermissionManager() {
     return ContainerManager
@@ -45,5 +47,9 @@ public class ComponentsUtil {
   
   public static LocaleManager getLocaleManager() {
     return ContainerManager.getComponent(LOCALE_MANAGER, LocaleManager.class);
+  }
+
+  public static UserAccessor getUserAccessor() {
+    return ContainerManager.getComponent(USER_ASSESOR, UserAccessor.class);
   }
 }

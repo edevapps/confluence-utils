@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2020, The Eduard Burenkov. All rights reserved. http://edevapps.com
+  -->
+
 <project xmlns="http://maven.apache.org/POM/4.0.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -6,17 +10,7 @@
 
   <groupId>com.edevapps.confluence</groupId>
   <artifactId>confluence-utils</artifactId>
-  <version>0.9.6</version>
-
-  <properties>
-    <confluence.version>6.8.0</confluence.version>
-    <jdk.version>1.8</jdk.version>
-    <junit.version>4.12</junit.version>
-    <log4j.version>1.2.17</log4j.version>
-    <jira.version>7.7.1</jira.version>
-    <amps.version>6.3.15</amps.version>
-    <common-utils.version>1.0.2</common-utils.version>
-  </properties>
+  <version>1.0.0</version>
 
   <dependencies>
     <dependency>
@@ -64,4 +58,14 @@
       </plugin>
     </plugins>
   </build>
+
+  <properties>
+    <confluence.version>7.0.1</confluence.version>
+    <jdk.version>1.8</jdk.version>
+    <junit.version>4.12</junit.version>
+    <log4j.version>1.2.17</log4j.version>
+    <jira.version>8.0.0</jira.version>
+    <amps.version>8.0.0</amps.version>
+    <common-utils.version>1.0.6</common-utils.version>
+  </properties>
 </project>
