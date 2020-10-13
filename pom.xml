@@ -62,10 +62,10 @@
   <properties>
     <confluence.version>7.0.1</confluence.version>
     <jdk.version>1.8</jdk.version>
-    <junit.version>4.12</junit.version>
+    <junit.version>4.13.1</junit.version>
     <log4j.version>1.2.17</log4j.version>
     <jira.version>8.0.0</jira.version>
     <amps.version>8.0.0</amps.version>
-    <common-utils.version>1.0.6</common-utils.version>
+    <common-utils.version>1.0.9</common-utils.version>
   </properties>
 </project>
